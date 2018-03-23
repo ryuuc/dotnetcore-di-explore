@@ -35,6 +35,13 @@
         }
 
         #region ctor
+
+        /// <summary>
+        /// 初始化<see cref="ServiceDescriptor"/>实例
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="implementationType">实例类型</param>
+        /// <param name="lifetime">生命周期</param>
         public ServiceDescriptor(System.Type serviceType, System.Type implementationType, ServiceLifetime lifetime)
             : this(serviceType, lifetime)
         {
@@ -46,6 +53,11 @@
             ImplementationType = implementationType ?? throw new System.ArgumentNullException(nameof(implementationType));
         }
 
+        /// <summary>
+        ///初始化<see cref="ServiceDescriptor"/>实例 
+        /// </summary>
+        /// <param name="servicetype">服务类型</param>
+        /// <param name="instance">实例</param>
         public ServiceDescriptor(System.Type servicetype, object instance)
             : this(servicetype, ServiceLifetime.Singleton)
         {
@@ -57,6 +69,12 @@
             ImplementationInstance = instance ?? throw new System.ArgumentNullException(nameof(instance));
         }
 
+        /// <summary>
+        /// 初始化<see cref="ServiceDescriptor"/>实例
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="factory">服务工厂</param>
+        /// <param name="lifetime">生命周期</param>
         public ServiceDescriptor(System.Type serviceType, System.Func<System.IServiceProvider, object> factory, ServiceLifetime lifetime)
             : this(serviceType, lifetime)
         {
@@ -68,6 +86,11 @@
             ImplementationFactory = factory ?? throw new System.ArgumentNullException(nameof(factory));
         }
 
+        /// <summary>
+        /// 初始化<see cref="ServiceDescriptor"/>实例
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <param name="lifetime">生命周期</param>
         public ServiceDescriptor(System.Type serviceType, ServiceLifetime lifetime)
         {
             ServiceType = serviceType;
@@ -77,6 +100,12 @@
         #endregion ctor
 
         #region Transient
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSerivice"></typeparam>
+        /// <typeparam name="TImplementation"></typeparam>
+        /// <returns></returns>
         public static ServiceDescriptor Transient<TSerivice, TImplementation>()
             where TSerivice : class
             where TImplementation : class, TSerivice
