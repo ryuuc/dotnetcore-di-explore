@@ -27,10 +27,12 @@ namespace DependencyInjectionSample
             services.AddMvc();
 
             services.AddScoped<ICharacterRepository, CharacterRepository>();
+
             services.AddTransient<IOperationTransient, Operation>();
             services.AddScoped<IOperationScoped, Operation>();
             services.AddSingleton<IOperationSingleton, Operation>();
             services.AddSingleton<IOperationSingletonInstance>(new Operation(Guid.Empty));
+
             services.AddTransient<OperationService, OperationService>();
         }
 

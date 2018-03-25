@@ -113,6 +113,17 @@
             return Descriptor<TSerivice, TImplementation>(ServiceLifetime.Transient);
         }
 
+        public static ServiceDescriptor Transient<TService>(System.Func<System.IServiceProvider, TService> implementationFactory)
+           where TService : class
+        {
+            if (implementationFactory == null)
+            {
+                throw new System.ArgumentNullException(nameof(implementationFactory));
+            }
+
+            return Descriptor(typeof(TService), implementationFactory, ServiceLifetime.Transient);
+        }
+
         public static ServiceDescriptor Transient(System.Type serviceType, System.Type implementationType)
         {
             if (serviceType == null)
