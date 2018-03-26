@@ -160,5 +160,52 @@ namespace Explore.DI.Abstractions
             collection.TryAdd(ServiceDescriptor.Transient(implementationFactory));
         }
         #endregion
+
+        #region scoped
+        public static IServiceCollection AddScoped(this IServiceCollection collection,Type serviceType,Type implementationType)
+        {
+            if(collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection));
+            }
+
+            if (serviceType == null)
+            {
+                throw new ArgumentNullException(nameof(serviceType));
+            }
+
+            if (implementationType == null)
+            {
+                throw new ArgumentNullException(nameof(implementationType));
+            }
+
+            return Add(collection, serviceType, implementationType, ServiceLifetime.Scoped);
+        }
+
+        public static IServiceCollection AddScoped(this IServiceCollection collection,Type serviceType,Func<IServiceProvider,object> implementationFactory)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection));
+            }
+            if(serviceType == null)
+            {
+                throw new ArgumentNullException(nameof(serviceType));
+            }
+            if(serviceType == null)
+            {
+                throw new ArgumentNullException(nameof(implementationFactory));
+            }
+
+            return Add(collection, serviceType, implementationFactory,ServiceLifetime.Scoped);
+        }
+        #endregion
+
+        private static IServiceCollection Add(IServiceCollection collection,Type serviceType,Func<IServiceProvider,object> implementationFactory,ServiceLifetime lifetime)
+        {
+            var descriptor = new ServiceDescriptor(serviceType, implementationFactory, lifetime);
+            collection.Add(descriptor);
+            return collection;
+        }
     }
 }
