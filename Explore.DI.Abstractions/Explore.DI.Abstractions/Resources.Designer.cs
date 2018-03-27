@@ -68,5 +68,14 @@ namespace Explore.DI.Abstractions {
                 return ResourceManager.GetString("NoServiceRegistered", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 Implementation type cannot be &apos;{0}&apos; because it is indistinguishable from other services registered for &apos;{1}&apos;. 的本地化字符串。
+        /// </summary>
+        internal static string TryAddIndistinguishableTypeToEnumerable {
+            get {
+                return ResourceManager.GetString("TryAddIndistinguishableTypeToEnumerable", resourceCulture);
+            }
+        }
     }
 }
