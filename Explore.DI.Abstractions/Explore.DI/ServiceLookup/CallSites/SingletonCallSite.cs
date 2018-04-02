@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Explore.DI.ServiceLookup
+﻿namespace Explore.DI.ServiceLookup
 {
     internal class SingletonCallSite : ScopedCallSite
     {
